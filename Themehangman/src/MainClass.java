@@ -33,6 +33,7 @@ public class MainClass extends ProSetting {
 			public void actionPerformed(ActionEvent e) {
 				// 버튼 클릭 효과음 추가하기
 			    Start.setVisible(false);
+			    Play.reLoad();
 			    Play.setVisible(true);
 			}
 		});

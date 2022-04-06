@@ -7,19 +7,15 @@ import javax.swing.event.*;
 
 public class Playing extends ProSetting {
 	public MyPanel panel;
-	public JButton keyboard[];
-	public JButton text[];
 	
-	public String que;
-	char[][] que_answer = new char[][] {
-		{'ㅂ', 'ㅏ'},
-		{'ㄷ', 'ㅏ'},
-		{'ㅋ', 'ㅗ'},
-		{'ㄱ', 'ㄱ', 'ㅣ'},
-		{'ㄹ', 'ㅣ'}
-	};
+	private JButton keyboard[];
+	private JButton text[];
+	private JTextField input;
+	
+	private String que;
+	private char[][] que_answer;
 	 
-	public char	ch[] = {
+	private char ch[] = {
 			'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ',
 			'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ',
 			'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ',
@@ -28,6 +24,14 @@ public class Playing extends ProSetting {
 	};
 	
 	public Playing() {
+	    que = "바다코끼리";
+		que_answer = new char[][] {
+			{'ㅂ', 'ㅏ'},
+			{'ㄷ', 'ㅏ'},
+			{'ㅋ', 'ㅗ'},
+			{'ㄱ', 'ㄱ', 'ㅣ'},
+			{'ㄹ', 'ㅣ'}
+		};
 		
 		i = new ImageIcon("src/img/background.png");
 		im = i.getImage();
@@ -48,7 +52,6 @@ public class Playing extends ProSetting {
 	    JPanel question = new JPanel(new GridLayout(2, 5));
 	    question.setBackground(background);
 	    question.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-	    que = "바다코끼리";
 	    text = new JButton[10];
 	    for(int i=0; i<que.length(); i++) {
 	    	text[i] = new JButton();
@@ -98,7 +101,7 @@ public class Playing extends ProSetting {
 	    JPanel answer = new JPanel();
 	    answer.setBackground(background);
 	    answer.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
-	    JTextField input = new JTextField("정답입력", 10);
+	    input = new JTextField("정답입력", 10);
 	    input.setFont(font1);
 	    
 	    input.addActionListener(new ActionListener() {
@@ -110,6 +113,7 @@ public class Playing extends ProSetting {
 							, "ThemeHangman"
 							, JOptionPane.PLAIN_MESSAGE
 					);
+					panel.setVisible(false);
 				}
 			}
 		});
@@ -152,7 +156,20 @@ public class Playing extends ProSetting {
 			}
 		}
 	}
-
+	
+	public void reLoad() {
+		// 데이터 불러오기
+	    que = "바다코끼리";
+		que_answer = new char[][] {
+			{'ㅂ', 'ㅏ'},
+			{'ㄷ', 'ㅏ'},
+			{'ㅋ', 'ㅗ'},
+			{'ㄱ', 'ㄱ', 'ㅣ'},
+			{'ㄹ', 'ㅣ'}
+		};
+		
+		input.setText("정답입력");
+	}
 	public void setVisible(boolean tf) {
 		panel.setVisible(tf);
 	}
