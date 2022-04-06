@@ -8,7 +8,7 @@ import javax.swing.event.*;
 public class Playing extends ProSetting {
 	public MyPanel panel;
 	
-	private JButton keyboard[];
+	private CircleButton keyboard[];
 	private JButton text[];
 	private JTextField input;
 	
@@ -76,7 +76,7 @@ public class Playing extends ProSetting {
 	    JPanel typing = new JPanel(new GridLayout(5, 5, 5, 5));
 	    typing.setBackground(background);
 	    typing.setBorder(BorderFactory.createEmptyBorder(15, 50, 10, 50));
-	    keyboard = new JButton[ch.length];
+	    keyboard = new CircleButton[ch.length];
 	    for(int i=0; i<ch.length; i++) {
 	    	if(i == 14) {
 	    		// blank
@@ -84,9 +84,8 @@ public class Playing extends ProSetting {
 		    	typing.add(blank);
 	    		
 	    	} 
-	    	keyboard[i] = new JButton(String.valueOf(ch[i]));
+	    	keyboard[i] = new CircleButton(String.valueOf(ch[i]));
 	    	keyboard[i].setFont(font1);
-	    	keyboard[i].setBackground(key);
 	    	keyboard[i].setContentAreaFilled(true);
 	    	keyboard[i].setBorderPainted(true);
 	    	keyboard[i].setFocusPainted(false);

@@ -27,7 +27,6 @@ public class ProSetting {
 	public Font font1 = new Font("µÕ±Ù¸ð²Ã", Font.PLAIN, 20);
 	
 	public Color background = new Color(253, 159, 40);
-	public Color key = new Color(200, 200, 200);
 	
 	class MyPanel extends JPanel{   
 	    public void paintComponent(Graphics g){
