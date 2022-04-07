@@ -2,8 +2,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
 import java.net.URL;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,5 +37,33 @@ public class ProSetting {
 	        super.paintComponent(g);
 	        g.drawImage(im,0,0,getWidth(),getHeight(),this);
 	    }
+	}
+	
+	public static void backsound() {
+        File file = new File("src/music/test.wav");
+        
+        try {
+            AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(stream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static void btnsound() {
+        File file = new File("src/music/test.wav");
+        
+        try {
+            AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(stream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 	}
 }
