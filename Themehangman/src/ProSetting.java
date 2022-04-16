@@ -8,6 +8,7 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +33,10 @@ public class ProSetting {
 	
 	public Color background = new Color(253, 159, 40);
 	
+	public static File file;
+	static Clip clip;
+	static FloatControl volume;
+	
 	class MyPanel extends JPanel{   
 	    public void paintComponent(Graphics g){
 	        super.paintComponent(g);
@@ -40,12 +45,14 @@ public class ProSetting {
 	}
 	
 	public static void backsound() {
-        File file = new File("src/music/test.wav");
+        file = new File("src/music/background.wav");
         
         try {
             AudioInputStream stream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(stream);
+            volume= (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN); 
+            volume.setValue(-20.0f);
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
         } catch(Exception e) {
@@ -53,17 +60,4 @@ public class ProSetting {
         }
 	}
 	
-	public static void btnsound() {
-        File file = new File("src/music/test.wav");
-        
-        try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(stream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            clip.start();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-	}
 }
