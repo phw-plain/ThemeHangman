@@ -13,24 +13,21 @@ public class Playing extends ProSetting {
 	private JTextField input;
 	
 	private String que;
-	private char[][] que_answer;
+	private char[] que_answer;
 	 
 	private char ch[] = {
-			'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ',
-			'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ',
-			'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ',
-			'ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ',
-			'ㅛ', 'ㅜ', 'ㅍ', 'ㅡ', 'ㅣ'	
+			'A', 'B', 'C', 'D', 'E',
+			'F', 'G', 'H', 'I', 'J',
+			'K', 'L', 'M', 'N', 'O', 
+			'P', 'Q', 'R', 'S', 'T', 
+			'U', 'V', 'W', 'X', 'y',
+			'Z'
 	};
 	
 	public Playing() {
-	    que = "바다코끼리";
-		que_answer = new char[][] {
-			{'ㅂ', 'ㅏ'},
-			{'ㄷ', 'ㅏ'},
-			{'ㅋ', 'ㅗ'},
-			{'ㄱ', 'ㄱ', 'ㅣ'},
-			{'ㄹ', 'ㅣ'}
+	    que = "MIRIM";
+		que_answer = new char[] {
+			'M', 'I', 'R', 'I', 'M'
 		};
 		
 		i = new ImageIcon("src/img/background.png");
@@ -46,12 +43,12 @@ public class Playing extends ProSetting {
 		screen.setContentAreaFilled(false);
 		screen.setBorderPainted(false);
 		screen.setFocusPainted(false);
-		screen.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+		screen.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0));
 		
 		// Question
 	    JPanel question = new JPanel(new GridLayout(2, 5));
 	    question.setBackground(background);
-	    question.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+	    question.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 	    text = new JButton[10];
 	    for(int i=0; i<que.length(); i++) {
 	    	text[i] = new JButton();
@@ -73,17 +70,11 @@ public class Playing extends ProSetting {
 	    }
 	    
 	    // Typing
-	    JPanel typing = new JPanel(new GridLayout(5, 5, 5, 5));
+	    JPanel typing = new JPanel(new GridLayout(6, 5, 5, 5));
 	    typing.setBackground(background);
-	    typing.setBorder(BorderFactory.createEmptyBorder(15, 50, 10, 50));
+	    typing.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50));
 	    keyboard = new CircleButton[ch.length];
 	    for(int i=0; i<ch.length; i++) {
-	    	if(i == 14) {
-	    		// blank
-	    		JLabel blank = new JLabel("");
-		    	typing.add(blank);
-	    		
-	    	} 
 	    	keyboard[i] = new CircleButton(String.valueOf(ch[i]));
 	    	keyboard[i].setFont(font1);
 	    	keyboard[i].setContentAreaFilled(true);
@@ -106,7 +97,7 @@ public class Playing extends ProSetting {
 	    input.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("텍스트 입력 : " + input.getText() + ", " + que);
-				if(input.getText().equals(que)) {
+				if((input.getText().toUpperCase()).equals(que)) {
 					JOptionPane.showMessageDialog(null
 							, "정답!!"
 							, "ThemeHangman"
@@ -137,20 +128,18 @@ public class Playing extends ProSetting {
 	
 	private void answer(int idx) {
 		for(int i=0; i<que_answer.length; i++) {
-			for(int j=0; j<que_answer[i].length; j++) {
-				if(ch[idx] == que_answer[i][j]) {
-					if(text[i].getText() == " ") {
-						text[i].setText(String.valueOf(que_answer[i][j]));
-						que_answer[i][j] = '/';
-					} else if(text[i].getText().charAt(0) > que_answer[i][j]) {
-						String temp = String.valueOf(que_answer[i][j]);
-						temp +=	text[i].getText();
-						text[i].setText(temp);
-						que_answer[i][j] = '/';
-					} else {
-						text[i].setText(text[i].getText() + String.valueOf(que_answer[i][j]));
-						que_answer[i][j] = '/';
-					}
+			if(ch[idx] == que_answer[i]) {
+				if(text[i].getText() == " ") {
+					text[i].setText(String.valueOf(que_answer[i]));
+					que_answer[i] = '/';
+				} else if(text[i].getText().charAt(0) > que_answer[i]) {
+					String temp = String.valueOf(que_answer[i]);
+					temp +=	text[i].getText();
+					text[i].setText(temp);
+					que_answer[i] = '/';
+				} else {
+					text[i].setText(text[i].getText() + String.valueOf(que_answer[i]));
+					que_answer[i] = '/';
 				}
 			}
 		}
@@ -158,14 +147,10 @@ public class Playing extends ProSetting {
 	
 	public void reLoad() {
 		// 데이터 불러오기
-	    que = "바다코끼리";
-		que_answer = new char[][] {
-			{'ㅂ', 'ㅏ'},
-			{'ㄷ', 'ㅏ'},
-			{'ㅋ', 'ㅗ'},
-			{'ㄱ', 'ㄱ', 'ㅣ'},
-			{'ㄹ', 'ㅣ'}
-		};
+	    que = "MIRIM";
+	    que_answer = new char[] {
+				'M', 'I', 'R', 'I', 'M'
+			};
 		
 		input.setText("정답입력");
 	}
