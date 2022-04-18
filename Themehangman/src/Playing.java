@@ -122,6 +122,7 @@ public class Playing extends ProSetting {
 				// 버튼 클릭 효과음 추가하기
 				System.out.println(keyboard[idx].getText() + "키 입력!");
 				answer(idx);
+		    	keyboard[idx].setEnabled(false);
 			}
 		});
 	}
@@ -152,6 +153,13 @@ public class Playing extends ProSetting {
 				'M', 'I', 'R', 'I', 'M'
 			};
 		
+	    for(int i=0; i<text.length/2; i++) {
+	    	text[i].setText(" ");
+	    }
+	    
+	    for(int i=0; i<keyboard.length; i++) 
+	    	keyboard[i].setEnabled(true);
+	    
 		input.setText("정답입력");
 	}
 	public void setVisible(boolean tf) {
