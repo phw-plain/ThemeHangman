@@ -16,10 +16,10 @@ public class Starting extends ProSetting {
 	    panel = new MyPanel();
 	    
 	    JPanel subpanel = new JPanel(new BorderLayout());
-	    subpanel.setBackground(new Color(255,255,255,0));
+	    subpanel.setBackground(transparent);
 	    
 	    JPanel btns = new JPanel(new BorderLayout());
-	    btns.setBackground(new Color(255,255,255,0));
+	    btns.setBackground(transparent);
 	    btns.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 	    JSlider sound = new JSlider();
 	    sound.setBackground(new Color(253,159,40));
@@ -33,7 +33,7 @@ public class Starting extends ProSetting {
 	    
 	    JPanel blank = new JPanel();
 	    blank.setBorder(BorderFactory.createEmptyBorder(0, 0, 260, 0));
-	    blank.setBackground(new Color(255,255,255,0));
+	    blank.setBackground(transparent);
 	    
 	    start = new JButton("", btnNomal);
 	    start.setRolloverIcon(btnOver);

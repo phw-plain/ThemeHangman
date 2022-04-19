@@ -29,9 +29,10 @@ public class ProSetting {
 	public ImageIcon btnOver = new ImageIcon("src/img/over.png");
 	public ImageIcon btnClick = new ImageIcon("src/img/click.png");
 
-	public Font font1 = new Font("µÕ±Ù¸ð²Ã", Font.PLAIN, 20);
+	public Font font1 = new Font("µÕ±Ù¸ð²Ã", Font.PLAIN, 25);
 	
 	public Color background = new Color(253, 159, 40);
+	public Color transparent = new Color(255, 255, 255, 0);
 	
 	public static File file;
 	static Clip clip;

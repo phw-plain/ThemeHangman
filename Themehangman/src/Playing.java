@@ -25,9 +25,9 @@ public class Playing extends ProSetting {
 	};
 	
 	public Playing() {
-	    que = "MIRIM";
+	    que = "MOVIE";
 		que_answer = new char[] {
-			'M', 'I', 'R', 'I', 'M'
+			'M', 'O', 'V', 'I', 'E'
 		};
 		
 		i = new ImageIcon("src/img/background.png");
@@ -146,12 +146,13 @@ public class Playing extends ProSetting {
 		}
 	}
 	
-	public void reLoad() {
+	public void reLoad(int idx) {
+		// idx 테마의
 		// 데이터 불러오기
-	    que = "MIRIM";
-	    que_answer = new char[] {
-				'M', 'I', 'R', 'I', 'M'
-			};
+	    que = "MOVIE";
+		que_answer = new char[] {
+			'M', 'O', 'V', 'I', 'E'
+		};
 		
 	    for(int i=0; i<text.length/2; i++) {
 	    	text[i].setText(" ");

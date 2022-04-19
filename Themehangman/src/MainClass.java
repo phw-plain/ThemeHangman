@@ -9,6 +9,7 @@ public class MainClass extends ProSetting {
 	private JPanel subpanel;
 	
 	private Starting Start;
+	private ThemeSelect Select;
 	private Playing Play;
 	
 	
@@ -27,21 +28,45 @@ public class MainClass extends ProSetting {
 	    mainFrame.setIconImage(img.getImage());
 
 	    Start = new Starting();
+	    Select = new ThemeSelect();
 	    Play = new Playing();
 	    
 	    Start.start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    Start.setVisible(false);
-			    Play.reLoad();
+				Start.setVisible(false);
+				Select.setVisible(true);
+			}
+		});
+	    
+	    Select.btn[0].addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Select.setVisible(false);
+			    Play.reLoad(0);
+			    Play.setVisible(true);
+			}
+		});
+	    Select.btn[1].addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Select.setVisible(false);
+			    Play.reLoad(1);
+			    Play.setVisible(true);
+			}
+		});
+	    Select.btn[2].addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Select.setVisible(false);
+			    Play.reLoad(2);
 			    Play.setVisible(true);
 			}
 		});
 	    
 	    subpanel = new JPanel(new CardLayout());
 	    subpanel.add(Start.panel);
+	    subpanel.add(Select.panel);
 	    subpanel.add(Play.panel);
 	    
 	    Start.setVisible(true);
+	    Select.setVisible(false);
 	    Play.setVisible(false);
 	    
 	    mainFrame.add(subpanel);
