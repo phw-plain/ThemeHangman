@@ -34,7 +34,7 @@ public class ThemeSelect extends ProSetting {
 		btnClick[1] = new ImageIcon("src/img/btns/btn2_3.png");
 		btnClick[2] = new ImageIcon("src/img/btns/btn3_3.png");
 
-		JPanel btns = new JPanel(new GridLayout(2,2,0,30));
+		JPanel btns = new JPanel(new GridLayout(2,2,50,30));
 	    btn = new JButton[3];
 	    
 	    for(int i=0; i<btn.length; i++) {

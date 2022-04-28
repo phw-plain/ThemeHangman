@@ -12,9 +12,13 @@ public class Playing extends ProSetting {
 	private JButton text[];
 	private JTextField input;
 	
+	private int que_cnt;
 	private String que;
 	private char[] que_answer;
-	 
+	
+	private JLabel screen;
+	private ImageIcon[] icon = new ImageIcon[10];
+	
 	private char ch[] = {
 			'A', 'B', 'C', 'D', 'E',
 			'F', 'G', 'H', 'I', 'J',
@@ -25,24 +29,26 @@ public class Playing extends ProSetting {
 	};
 	
 	public Playing() {
+		que_cnt = 0;
 	    que = "MOVIE";
 		que_answer = new char[] {
 			'M', 'O', 'V', 'I', 'E'
 		};
-		
+	    
 		i = new ImageIcon("src/img/background.png");
 		im = i.getImage();
 		
 	    panel = new MyPanel();
+	   
+	    String url = "src/stage/stage0.png";
+	    for(int i=0; i<5; i++) {
+	    	icon[i] = new ImageIcon(url);
+		    System.out.println(url);
+		    url = url.replace(Integer.toString(i), Integer.toString(i+1));
+	    }
 	    
 	    // Screen
-	    // replace이용해서 배열 stage 이미지 만들기 350x300px 로 만들기
-		ImageIcon stage = new ImageIcon("src/stage/stage1.png");
-	   
-		JButton screen = new JButton(stage);
-		screen.setContentAreaFilled(false);
-		screen.setBorderPainted(false);
-		screen.setFocusPainted(false);
+		screen = new JLabel(icon[0]);
 		screen.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0));
 		
 		// Question
@@ -96,7 +102,6 @@ public class Playing extends ProSetting {
 	    
 	    input.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("텍스트 입력 : " + input.getText() + ", " + que);
 				if((input.getText().toUpperCase()).equals(que)) {
 					JOptionPane.showMessageDialog(null
 							, "정답!!"
@@ -120,11 +125,16 @@ public class Playing extends ProSetting {
 		keyboard[idx].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 버튼 클릭 효과음 추가하기
-				System.out.println(keyboard[idx].getText() + "키 입력!");
 				answer(idx);
+				que_cnt++;
+				changeIcon();
 		    	keyboard[idx].setEnabled(false);
 			}
 		});
+	}
+	
+	private void changeIcon() {
+		screen.setIcon(icon[que_cnt]);
 	}
 	
 	private void answer(int idx) {
@@ -149,10 +159,12 @@ public class Playing extends ProSetting {
 	public void reLoad(int idx) {
 		// idx 테마의
 		// 데이터 불러오기
+		que_cnt = 0;
 	    que = "MOVIE";
 		que_answer = new char[] {
 			'M', 'O', 'V', 'I', 'E'
 		};
+		screen.setIcon(icon[0]);
 		
 	    for(int i=0; i<text.length/2; i++) {
 	    	text[i].setText(" ");
@@ -163,6 +175,7 @@ public class Playing extends ProSetting {
 	    
 		input.setText("정답입력");
 	}
+	
 	public void setVisible(boolean tf) {
 		panel.setVisible(tf);
 	}
